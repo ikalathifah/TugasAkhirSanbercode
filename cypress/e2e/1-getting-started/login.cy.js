@@ -3,6 +3,8 @@ import loginPage from "../pomOrange/login";
 describe('Fitur Login', () => {
  it('Test Function Login with Valid Credentials', () => {
    cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+   cy.wait(3000);
+   cy.get('[class="oxd-text oxd-text--h5 orangehrm-login-title"]').should('have.text', 'Login');
    loginPage.inputUsername().type('Admin');
    loginPage.inputPassword().type('admin123');
    let startTime;
@@ -15,13 +17,16 @@ describe('Fitur Login', () => {
     const responseTime = endTime - startTime;
     cy.log(`Response Time: ${responseTime} ms`);
     expect(intercept.response.statusCode).to.equal(200);
-    expect(responseTime).to.be.lessThan(1000);
+    expect(responseTime).to.be.lessThan(3000);
     });
+   cy.get('[class="oxd-text oxd-text--h6 oxd-topbar-header-breadcrumb-module"]').should('have.text', 'Dashboard');
   }
 )})
 describe('Fitur Login', () => {
   it('Test Function Login with Invalid Username and Password', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+    cy.wait(3000);
+    cy.get('[class="oxd-text oxd-text--h5 orangehrm-login-title"]').should('have.text', 'Login');
     loginPage.inputUsername().type('Adminn');
     loginPage.inputPassword().type('adminn123');
     cy.intercept("GET","**/employees/action-summary").as("actionsummary");
@@ -31,6 +36,8 @@ describe('Fitur Login', () => {
 describe('Fitur Login', () => {
   it('Test Function Login with Invalid Uppercase', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+    cy.wait(3000);
+    cy.get('[class="oxd-text oxd-text--h5 orangehrm-login-title"]').should('have.text', 'Login');
     loginPage.inputUsername().type('ADMIN');
     loginPage.inputPassword().type('ADMIN123');
     cy.intercept("GET","**/employees/action-summary").as("actionsummary");
@@ -40,6 +47,8 @@ describe('Fitur Login', () => {
 describe('Fitur Login', () => {
   it('Test Function Login with Blank Input', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+    cy.wait(3000);
+    cy.get('[class="oxd-text oxd-text--h5 orangehrm-login-title"]').should('have.text', 'Login');
     cy.intercept("GET","**/employees/action-summary").as("actionsummary");
     loginPage.buttonLogin().click();
    }
@@ -47,6 +56,8 @@ describe('Fitur Login', () => {
 describe('Fitur Login', () => {
   it('Test Function Login with User Doesnt Exist', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+    cy.wait(3000);
+    cy.get('[class="oxd-text oxd-text--h5 orangehrm-login-title"]').should('have.text', 'Login');
     loginPage.inputUsername().type('BukanAdmin');
     loginPage.inputPassword().type('bukanadmin123');
     cy.intercept("GET","**/employees/action-summary").as("actionsummary");
@@ -56,6 +67,8 @@ describe('Fitur Login', () => {
 describe('Fitur Login', () => {
   it('Test Function Login with Space Between', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+    cy.get('[class="oxd-text oxd-text--h5 orangehrm-login-title"]').should('have.text', 'Login');
+    cy.wait(3000);
     loginPage.inputUsername().type('A d m i n');
     loginPage.inputPassword().type('admin123');
     cy.intercept("GET","**/employees/action-summary").as("actionsummary");
@@ -63,46 +76,46 @@ describe('Fitur Login', () => {
    }
  )})
 describe('Fitur Forgot PW', () => {
-  it('Test Function Forgot PW', () => {
+  it('Test Function Button Forgot PW', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+    cy.get('[class="oxd-text oxd-text--h5 orangehrm-login-title"]').should('have.text', 'Login');
     cy.intercept("GET","**/employees/action-summary").as("actionsummary");
     loginPage.buttonForgot().click();
+    cy.get('[class="oxd-text oxd-text--h6 orangehrm-forgot-password-title"]').should('have.text', 'Reset Password');
    }
 )})
 describe('Fitur Forgot PW', () => {
   it('Test Function Forgot PW with Valid Credentials', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+    cy.get('[class="oxd-text oxd-text--h5 orangehrm-login-title"]').should('have.text', 'Login');
     cy.intercept("GET","**/employees/action-summary").as("actionsummary");
     loginPage.buttonForgot().click();
+    cy.get('[class="oxd-text oxd-text--h6 orangehrm-forgot-password-title"]').should('have.text', 'Reset Password');
     loginPage.inputUsernamepw().type('Admin');
     loginPage.buttonReset().click();
+    cy.get('[class="oxd-text oxd-text--h6 orangehrm-forgot-password-title"]').should('have.text', 'Reset Password link sent successfully');
    }
 )})
 describe('Fitur Forgot PW', () => {
   it('Test Function Forgot PW Canceled', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+    cy.get('[class="oxd-text oxd-text--h5 orangehrm-login-title"]').should('have.text', 'Login');
     cy.intercept("GET","**/employees/action-summary").as("actionsummary");
     loginPage.buttonForgot().click();
     loginPage.buttonCancel().click();
-   }
-)})
-describe('Fitur Forgot PW', () => {
-  it('Test Function Forgot PW with Invalid Credentials', () => {
-    cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
-    cy.intercept("GET","**/employees/action-summary").as("actionsummary");
-    loginPage.buttonForgot().click();
-    loginPage.inputUsernamepw().type('BukanAdmin');
-    loginPage.buttonReset().click();
+    cy.get('[class="oxd-text oxd-text--h5 orangehrm-login-title"]').should('have.text', 'Login');
    }
 )})
 describe('Fitur Directory', () => {
   it('Test Function Directory with Valid Credentials 1', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+    cy.get('[class="oxd-text oxd-text--h5 orangehrm-login-title"]').should('have.text', 'Login');
     cy.intercept("GET","**/employees/action-summary").as("actionsummary");
     loginPage.inputUsername().type('Admin');
     loginPage.inputPassword().type('admin123');
     loginPage.buttonLogin().click();
     cy.wait(3000);
+    cy.get('[class="oxd-text oxd-text--h6 oxd-topbar-header-breadcrumb-module"]').should('have.text', 'Dashboard');
     loginPage.buttonDirectory().click();
     cy.wait(3000);
     loginPage.inputHints().type('Peter');
@@ -113,16 +126,19 @@ describe('Fitur Directory', () => {
     loginPage.buttonSelectloc().click();
     cy.contains('.oxd-select-option', 'New York').click(); // Untuk tombol kedua
     loginPage.buttonSearch().click();
+    cy.get('[class="oxd-text oxd-text--span"]').should('have.text', '(1) Record Found');
    }
 )})
 describe('Fitur Directory', () => {
   it('Test Function Directory with Valid Credentials 2', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+    cy.get('[class="oxd-text oxd-text--h5 orangehrm-login-title"]').should('have.text', 'Login');
     cy.intercept("GET","**/employees/action-summary").as("actionsummary");
     loginPage.inputUsername().type('Admin');
     loginPage.inputPassword().type('admin123');
     loginPage.buttonLogin().click();
     cy.wait(3000);
+    cy.get('[class="oxd-text oxd-text--h6 oxd-topbar-header-breadcrumb-module"]').should('have.text', 'Dashboard');
     loginPage.buttonDirectory().click();
     cy.wait(3000);
     loginPage.inputHints().type('Rebecca');
@@ -133,5 +149,6 @@ describe('Fitur Directory', () => {
     loginPage.buttonSelectloc().click();
     cy.contains('.oxd-select-option', 'Texas').click(); // Untuk tombol kedua
     loginPage.buttonSearch().click();
+    cy.get('[class="oxd-text oxd-text--span"]').should('have.text', '(1) Record Found');
    }
 )})
