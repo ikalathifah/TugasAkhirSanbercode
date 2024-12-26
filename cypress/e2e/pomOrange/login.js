@@ -27,6 +27,12 @@ export default class loginPage {
         return cy.get('[placeholder="Type for hints..."]');
     }
     static buttonSelectjob(){
-        return cy.get('[class="oxd-select-text-input"]').contains('Chief Finance Officer');
+        return cy.get('.oxd-select-text--active').eq(0);
+    }
+    static buttonSelectloc(){
+        return cy.get('.oxd-select-text--active').eq(1);
+    }
+    static buttonSearch(){
+        return cy.get('[class="oxd-button oxd-button--medium oxd-button--secondary orangehrm-left-space"]');
     }
 }
