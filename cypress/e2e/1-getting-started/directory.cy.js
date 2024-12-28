@@ -46,7 +46,7 @@ describe('Fitur Directory', () => {
         loginPage.buttonSearch().click();
         cy.get('[class="oxd-text oxd-text--span"]').should('have.text', ' (1) Records Found');
         cy.contains('Reset').click();
-        cy.get('[class="oxd-text oxd-text--span"]').should('have.text', ' (115) Records Found');
+        cy.get('[class="oxd-text oxd-text--span"]').should('have.text', ' (116) Records Found');
     }
     )
 })
